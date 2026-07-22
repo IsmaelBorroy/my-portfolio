@@ -1,10 +1,11 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { applyLang, getLang, toggleLang } from './i18n.js';
+import { applyLang, getLang, toggleLangAnimated } from './i18n.js';
 
 // ── i18n ──────────────────────────────────────────────────
 applyLang(getLang());
-document.getElementById('lang-toggle').addEventListener('click', toggleLang);
+const wipeEl = document.getElementById('lang-wipe');
+document.getElementById('lang-toggle').addEventListener('click', () => toggleLangAnimated(wipeEl));
 
 // ── Scene setup ───────────────────────────────────────────
 const container = document.getElementById('canvas-container');
@@ -61,12 +62,6 @@ let doorFrom       = 0;
 const DOOR_TO      = -Math.PI / 2;
 const DOOR_DURATION = 0.65;
 
-// Camera zoom tween
-let zoomAnimating  = false;
-let zoomProgress   = 0;
-const ZOOM_DURATION = 1.1;
-const CAM_END      = new THREE.Vector3(0, 0.2, -1.5);  // through the door
-
 // Flash overlay
 const flash = document.getElementById('flash-overlay');
 
@@ -110,10 +105,6 @@ function easeInOut(t) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
-function easeIn(t) {
-  return t * t * t;
-}
-
 // ── Click handler ─────────────────────────────────────────
 renderer.domElement.addEventListener('click', (e) => {
   if (!doorNode || triggered) return;
@@ -130,6 +121,10 @@ renderer.domElement.addEventListener('click', (e) => {
     doorAnimating  = true;
     doorProgress   = 0;
     doorFrom       = doorNode.rotation.y;
+
+    // Fade out hero title upward
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) heroBg.classList.add('fade-out');
 
     // Hide hint
     const hint = document.getElementById('enter-hint');
@@ -151,34 +146,19 @@ function animate() {
   requestAnimationFrame(animate);
   const dt = clock.getDelta();
 
-  // 1. Door open tween
+  // Door open tween
   if (doorAnimating && doorNode) {
     doorProgress += dt / DOOR_DURATION;
     if (doorProgress >= 1) {
       doorProgress  = 1;
       doorAnimating = false;
-      // Start camera zoom after door is fully open
-      zoomAnimating = true;
-      zoomProgress  = 0;
-    }
-    doorNode.rotation.y = doorFrom + (DOOR_TO - doorFrom) * easeInOut(doorProgress);
-  }
-
-  // 2. Camera zoom tween
-  if (zoomAnimating) {
-    zoomProgress += dt / ZOOM_DURATION;
-    if (zoomProgress >= 1) {
-      zoomProgress  = 1;
-      zoomAnimating = false;
-      // Trigger flash → navigate
+      // Door fully open → flash and navigate
       flash.classList.add('active');
       setTimeout(() => {
         window.location.href = 'pages/information.html';
       }, 400);
     }
-    const t = easeIn(Math.min(zoomProgress, 1));
-    camera.position.lerpVectors(CAM_START, CAM_END, t);
-    camera.lookAt(0, 0, 0);
+    doorNode.rotation.y = doorFrom + (DOOR_TO - doorFrom) * easeInOut(doorProgress);
   }
 
   renderer.render(scene, camera);

@@ -238,20 +238,29 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.contact__email {
-  display: inline-block;
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+.contact__link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
   font-style: italic;
   color: var(--color-accent);
   text-decoration: none;
   border-bottom: 1px solid rgba(232, 220, 200, 0.25);
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  margin-bottom: 1.2rem;
+  width: fit-content;
   transition: border-color var(--transition-base), opacity var(--transition-base);
 }
 
-.contact__email:hover {
+.contact__link:hover {
   border-color: var(--color-accent);
   opacity: 0.75;
+}
+
+.contact__link svg {
+  flex-shrink: 0;
+  opacity: 0.85;
 }
 
 /* ── Footer ──────────────────────────────────────────────── */

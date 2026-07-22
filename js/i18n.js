@@ -111,3 +111,26 @@ export function toggleLang() {
   applyLang(next);
   return next;
 }
+
+// ── Toggle with wipe animation ────────────────────────────
+export function toggleLangAnimated(wipeEl) {
+  if (!wipeEl) return toggleLang();
+
+  // Reset to off-screen right, then animate in
+  wipeEl.classList.remove('exit');
+  wipeEl.classList.add('enter');
+
+  setTimeout(() => {
+    // Swap text while panel covers the screen
+    toggleLang();
+
+    // Animate out to the left
+    wipeEl.classList.remove('enter');
+    wipeEl.classList.add('exit');
+
+    // After exit finishes, reset position silently
+    setTimeout(() => {
+      wipeEl.classList.remove('exit');
+    }, 200);
+  }, 180);
+}

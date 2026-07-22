@@ -1,8 +1,9 @@
-import { applyLang, getLang, toggleLang } from './i18n.js';
+import { applyLang, getLang, toggleLangAnimated } from './i18n.js';
 
 // ── i18n ──────────────────────────────────────────────────
 applyLang(getLang());
-document.getElementById('lang-toggle').addEventListener('click', toggleLang);
+const wipeEl = document.getElementById('lang-wipe');
+document.getElementById('lang-toggle').addEventListener('click', () => toggleLangAnimated(wipeEl));
 
 // ── Fade body in on load ──────────────────────────────────
 window.addEventListener('load', () => {

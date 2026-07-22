@@ -88,6 +88,13 @@ body {
   pointer-events: all;
 }
 
+/* ── Hero fade-out on door click ─────────────────────────── */
+.hero-bg.fade-out {
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  opacity: 0 !important;
+  transform: translateY(-22px) !important;
+}
+
 /* ── Keyframes ───────────────────────────────────────────── */
 @keyframes fadeUp {
   to {
