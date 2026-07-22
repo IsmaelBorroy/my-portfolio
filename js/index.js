@@ -1,4 +1,8 @@
 import { applyLang, getLang, toggleLangAnimated } from './i18n.js';
+import { initTheme } from './theme.js';
+
+// ── Theme ─────────────────────────────────────────────────
+initTheme('theme-toggle');
 
 // ── i18n ──────────────────────────────────────────────────
 applyLang(getLang());

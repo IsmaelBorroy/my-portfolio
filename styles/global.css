@@ -8,9 +8,29 @@
   --color-muted:   #7a8c7e;
   --color-white:   #ffffff;
 
+  --color-border:       rgba(232, 220, 200, 0.12);
+  --color-border-hover: rgba(232, 220, 200, 0.35);
+  --color-nav-scrolled: rgba(14, 26, 20, 0.92);
+  --color-surface:      rgba(232, 220, 200, 0.04);
+
   --font-serif: 'Cormorant Garamond', Georgia, serif;
 
   --transition-base: 0.3s ease;
+}
+
+/* ── Light theme ─────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-bg:      #faf6ee;
+  --color-primary: #f0e8d5;
+  --color-accent:  #5c3d1e;
+  --color-text:    #3b2a14;
+  --color-muted:   #8c7355;
+  --color-white:   #ffffff;
+
+  --color-border:       rgba(92, 61, 30, 0.2);
+  --color-border-hover: rgba(92, 61, 30, 0.45);
+  --color-nav-scrolled: rgba(240, 232, 213, 0.95);
+  --color-surface:      rgba(92, 61, 30, 0.05);
 }
 
 *, *::before, *::after {
@@ -47,6 +67,24 @@ body {
   white-space: nowrap;
 }
 
+/* ── Top-left controls wrapper (index.html) ─────────────── */
+.top-controls {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── Nav controls wrapper (information.html) ────────────── */
+.nav__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 /* ── Language toggle button (shared) ─────────────────────── */
 .lang-btn {
   display: flex;
@@ -61,11 +99,7 @@ body {
   letter-spacing: 0.08em;
   padding: 5px 12px 5px 8px;
   cursor: pointer;
-  transition: border-color var(--transition-base), color var(--transition-base);
-  position: fixed;
-  top: 1.5rem;
-  left: 1.5rem;
-  z-index: 100;
+  transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
 }
 
 .lang-btn:hover {
@@ -76,6 +110,48 @@ body {
 .lang-btn svg {
   flex-shrink: 0;
   opacity: 0.85;
+}
+
+/* Keep nav lang btn static (not fixed) */
+.nav__lang {
+  position: static;
+}
+
+/* ── Theme toggle button ─────────────────────────────────── */
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: 1px solid var(--color-muted);
+  border-radius: 50%;
+  color: var(--color-accent);
+  cursor: pointer;
+  transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
+}
+
+.theme-btn:hover {
+  border-color: var(--color-accent);
+}
+
+/* In dark mode: show sun, hide moon */
+.theme-btn__moon { display: none; }
+.theme-btn__sun  { display: block; }
+
+/* In light mode: show moon, hide sun */
+[data-theme="light"] .theme-btn__sun  { display: none; }
+[data-theme="light"] .theme-btn__moon { display: block; }
+
+/* nav__theme keeps static positioning */
+.nav__theme {
+  position: static;
+}
+
+/* ── Body theme transition ───────────────────────────────── */
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* ── Language wipe overlay ───────────────────────────────── */
