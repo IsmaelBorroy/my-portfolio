@@ -296,6 +296,23 @@ body {
   flex: 1;
 }
 
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin-top: 0.2rem;
+}
+
+.project-card__tags li {
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid rgba(232, 220, 200, 0.15);
+  border-radius: 100px;
+  color: var(--color-muted);
+}
+
 .project-card__link {
   font-size: 0.8rem;
   letter-spacing: 0.12em;

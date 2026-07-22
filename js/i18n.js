@@ -24,7 +24,7 @@ export const translations = {
 
     // portfolio.html — experience
     exp_title:      'Experience',
-    exp_1_role:     'Developer · IBM',
+    exp_1_role:     'AI Engineer · IBM',
     exp_1_period:   '2025 - 2026',
     exp_1_desc:     'Building AI-powered MVPs and proofs of concept for enterprise clients across Latin America. Projects span document processing, AI agents, and data analytics using IBM watsonx technologies, Python, React, and cloud-native tools.',
     exp_2_role:     'Computer Engineering · FING Uruguay',
@@ -33,8 +33,8 @@ export const translations = {
 
     // portfolio.html — projects
     proj_title:     'Projects',
-    proj_1_name:    'Soon',
-    proj_1_desc:    'Coming soon.',
+    proj_1_name:    'RAG PDF Assistant',
+    proj_1_desc:    'Full-stack RAG system built as an IBM entry project. Ingests a PDF, handles document chunking and retrieval logic, and exposes a conversational interface powered by an LLM with custom prompting. Containerised with Docker.',
     proj_link:      'View →',
 
     cv_download:    'Download CV',
@@ -70,7 +70,7 @@ export const translations = {
 
     // portfolio.html — experience
     exp_title:      'Experiencia',
-    exp_1_role:     'Desarrollador · IBM',
+    exp_1_role:     'AI Engineer · IBM',
     exp_1_period:   '2025 – 2026',
     exp_1_desc:     'Construcción de MVPs y pruebas de concepto con IA para clientes empresariales en América Latina. Los proyectos abarcan procesamiento de documentos, agentes de IA y analítica de datos usando tecnologías IBM watsonx, Python, React y herramientas cloud-native.',
     exp_2_role:     'Ingeniería en Computación · FING Uruguay',
@@ -79,8 +79,8 @@ export const translations = {
 
     // portfolio.html — projects
     proj_title:     'Proyectos',
-    proj_1_name:    'Próximamente',
-    proj_1_desc:    'Próximamente.',
+    proj_1_name:    'RAG PDF Assistant',
+    proj_1_desc:    'Sistema RAG full-stack construido como proyecto de ingreso a IBM. Procesa un PDF, implementa lógica de chunking y recuperación de información, y expone una interfaz conversacional con un LLM y prompting personalizado. Contenerizado con Docker.',
     proj_link:      'Ver →',
 
     cv_download:    'Descargar CV',
