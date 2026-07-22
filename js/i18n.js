@@ -16,8 +16,8 @@ export const translations = {
 
     // portfolio.html — about
     about_title:    'About Me',
-    about_p1:       'I\'m a Computer Engineering student at FING Uruguay, currently working at IBM as a Developer focused on AI solutions. I build MVPs and proof-of-concept projects across Latin America using IBM watsonx technologies.',
-    about_p2:       'I\'m passionate about AI agents, document processing, and system design. I thrive in cross-cultural, client-facing environments and enjoy turning complex technical challenges into clean, impactful solutions.',
+    about_p1:       'I\'m a Computer Engineering student at FING Uruguay with hands-on experience building AI-powered solutions. I\'ve worked on MVPs and proofs of concept spanning document processing, AI agents, and data analytics across Latin America.',
+    about_p2:       'I\'m passionate about AI agents, system design, and turning complex technical challenges into clean solutions. I thrive in cross-cultural, client-facing environments.',
 
     // portfolio.html — skills
     skills_title:   'Skills',
@@ -60,8 +60,8 @@ export const translations = {
 
     // portfolio.html — about
     about_title:    'Sobre mí',
-    about_p1:       'Soy estudiante de Ingeniería en Computación en FING Uruguay y trabajo en IBM como Desarrollador enfocado en soluciones de IA. Construyo MVPs y pruebas de concepto para clientes en América Latina usando tecnologías IBM watsonx.',
-    about_p2:       'Me apasionan los agentes de IA, el procesamiento de documentos y el diseño de sistemas. Me desenvuelvo bien en entornos multiculturales y orientados al cliente, y disfruto convirtiendo desafíos técnicos complejos en soluciones claras e impactantes.',
+    about_p1:       'Soy estudiante de Ingeniería en Computación en FING Uruguay con experiencia práctica construyendo soluciones de IA. He trabajado en MVPs y pruebas de concepto en procesamiento de documentos, agentes de IA y analítica de datos en América Latina.',
+    about_p2:       'Me apasionan los agentes de IA, el diseño de sistemas y convertir desafíos técnicos complejos en soluciones claras. Me desenvuelvo bien en entornos multiculturales y orientados al cliente.',
 
     // portfolio.html — skills
     skills_title:   'Habilidades',
