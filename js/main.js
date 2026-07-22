@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { applyLang, getLang, toggleLangAnimated } from './i18n.js';
 import { initTheme } from './theme.js';
+import './trail.js';
 
 // ── Theme ─────────────────────────────────────────────────
 initTheme('theme-toggle');

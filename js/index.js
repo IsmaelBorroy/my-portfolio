@@ -1,5 +1,6 @@
 import { applyLang, getLang, toggleLangAnimated } from './i18n.js';
 import { initTheme } from './theme.js';
+import './trail.js';
 
 // ── Theme ─────────────────────────────────────────────────
 initTheme('theme-toggle');
