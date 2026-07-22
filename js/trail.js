@@ -1,7 +1,8 @@
-const TRAIL_LIFETIME = 200;   // ms until a segment fully disappears
-const MIN_DIST       = 6;     // px — minimum distance before adding a new point
+const TRAIL_LIFETIME = 500;   // ms until the trail fully disappears
+const MIN_DIST       = 12;    // px — minimum distance before recording a new point
 const DASH           = [6, 5]; // [dash length, gap length] in px
 const LINE_WIDTH     = 1.2;
+const TENSION        = 0.5;   // Catmull-Rom tension (0 = sharp, 1 = very smooth)
 
 const canvas = document.getElementById('trail-canvas');
 const ctx    = canvas.getContext('2d');
@@ -79,20 +80,36 @@ function drawTrail() {
 
   ctx.lineWidth  = LINE_WIDTH;
   ctx.lineCap    = 'round';
+  ctx.lineJoin   = 'round';
   ctx.setLineDash(DASH);
 
-  for (let i = 1; i < points.length; i++) {
-    const p0 = points[i - 1];
-    const p1 = points[i];
+  // Draw a single Catmull-Rom spline through all points.
+  // Opacity fades from 1 (newest tail end) to 0 (oldest head).
+  // We approximate per-segment opacity by splitting into n sub-draws.
+  const n = points.length;
 
-    // Opacity based on the *newer* point's age — newest = 1, oldest = 0
-    const age     = now - p1.t;
+  // Build the smooth path using Catmull-Rom → cubic Bézier conversion.
+  // Each segment i→i+1 uses phantom control points from i-1 and i+2.
+  for (let i = 0; i < n - 1; i++) {
+    const p0 = points[Math.max(i - 1, 0)];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[Math.min(i + 2, n - 1)];
+
+    // Catmull-Rom → Bézier control points
+    const cp1x = p1.x + (p2.x - p0.x) / 6 * TENSION * 2;
+    const cp1y = p1.y + (p2.y - p0.y) / 6 * TENSION * 2;
+    const cp2x = p2.x - (p3.x - p1.x) / 6 * TENSION * 2;
+    const cp2y = p2.y - (p3.y - p1.y) / 6 * TENSION * 2;
+
+    // Fade: oldest segment (i=0) → near 0, newest (i=n-2) → 1
+    const age     = now - p2.t;
     const opacity = Math.max(0, 1 - age / TRAIL_LIFETIME);
 
     ctx.strokeStyle = `rgba(${r},${g},${b},${opacity.toFixed(3)})`;
     ctx.beginPath();
-    ctx.moveTo(p0.x, p0.y);
-    ctx.lineTo(p1.x, p1.y);
+    ctx.moveTo(p1.x, p1.y);
+    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
     ctx.stroke();
   }
 }
