@@ -16,35 +16,32 @@ export const translations = {
 
     // portfolio.html — about
     about_title:    'About Me',
-    about_p1:       'Placeholder — tell the world who you are.',
-    about_p2:       'Placeholder — your background, passion, and what drives you.',
+    about_p1:       'I\'m a Computer Engineering student at FING Uruguay, currently working at IBM as a Developer focused on AI solutions. I build MVPs and proof-of-concept projects across Latin America using IBM watsonx technologies.',
+    about_p2:       'I\'m passionate about AI agents, document processing, and system design. I thrive in cross-cultural, client-facing environments and enjoy turning complex technical challenges into clean, impactful solutions.',
 
     // portfolio.html — skills
     skills_title:   'Skills',
 
     // portfolio.html — experience
     exp_title:      'Experience',
-    exp_1_role:     'Role · Company',
-    exp_1_period:   '2022 – Present',
-    exp_1_desc:     'Placeholder — describe what you did and the impact you made.',
-    exp_2_role:     'Role · Company',
-    exp_2_period:   '2020 – 2022',
-    exp_2_desc:     'Placeholder — describe what you did and the impact you made.',
+    exp_1_role:     'Developer · IBM',
+    exp_1_period:   '2025 - 2026',
+    exp_1_desc:     'Building AI-powered MVPs and proofs of concept for enterprise clients across Latin America. Projects span document processing, AI agents, and data analytics using IBM watsonx technologies, Python, React, and cloud-native tools.',
+    exp_2_role:     'Computer Engineering · FING Uruguay',
+    exp_2_period:   '2022 – Present',
+    exp_2_desc:     'Studying Computer Engineering at the Faculty of Engineering of Uruguay (FING), building a strong foundation in software architecture, systems design, and problem solving.',
 
     // portfolio.html — projects
     proj_title:     'Projects',
-    proj_1_name:    'Project One',
-    proj_1_desc:    'Placeholder — short description of the project and technologies used.',
-    proj_2_name:    'Project Two',
-    proj_2_desc:    'Placeholder — short description of the project and technologies used.',
-    proj_3_name:    'Project Three',
-    proj_3_desc:    'Placeholder — short description of the project and technologies used.',
+    proj_1_name:    'Soon',
+    proj_1_desc:    'Coming soon.',
     proj_link:      'View →',
 
     // portfolio.html — contact
     contact_title:  'Contact',
     contact_intro:  'Have a project in mind? Let\'s talk.',
-    contact_email:  'hello@ismaelborroy.com',
+    contact_email:  'ismaelborroy@gmail.com',
+    contact_linkedin: 'linkedin.com/in/ismaelborroymachado',
   },
 
   es: {
@@ -63,35 +60,32 @@ export const translations = {
 
     // portfolio.html — about
     about_title:    'Sobre mí',
-    about_p1:       'Placeholder — cuéntale al mundo quién eres.',
-    about_p2:       'Placeholder — tu trayectoria, pasión y lo que te impulsa.',
+    about_p1:       'Soy estudiante de Ingeniería en Computación en FING Uruguay y trabajo en IBM como Desarrollador enfocado en soluciones de IA. Construyo MVPs y pruebas de concepto para clientes en América Latina usando tecnologías IBM watsonx.',
+    about_p2:       'Me apasionan los agentes de IA, el procesamiento de documentos y el diseño de sistemas. Me desenvuelvo bien en entornos multiculturales y orientados al cliente, y disfruto convirtiendo desafíos técnicos complejos en soluciones claras e impactantes.',
 
     // portfolio.html — skills
     skills_title:   'Habilidades',
 
     // portfolio.html — experience
     exp_title:      'Experiencia',
-    exp_1_role:     'Rol · Empresa',
-    exp_1_period:   '2022 – Presente',
-    exp_1_desc:     'Placeholder — describe lo que hiciste y el impacto que generaste.',
-    exp_2_role:     'Rol · Empresa',
-    exp_2_period:   '2020 – 2022',
-    exp_2_desc:     'Placeholder — describe lo que hiciste y el impacto que generaste.',
+    exp_1_role:     'Desarrollador · IBM',
+    exp_1_period:   '2025 – 2026',
+    exp_1_desc:     'Construcción de MVPs y pruebas de concepto con IA para clientes empresariales en América Latina. Los proyectos abarcan procesamiento de documentos, agentes de IA y analítica de datos usando tecnologías IBM watsonx, Python, React y herramientas cloud-native.',
+    exp_2_role:     'Ingeniería en Computación · FING Uruguay',
+    exp_2_period:   '2022 – Presente',
+    exp_2_desc:     'Cursando Ingeniería en Computación en la Facultad de Ingeniería de Uruguay (FING), construyendo una base sólida en arquitectura de software, diseño de sistemas y resolución de problemas.',
 
     // portfolio.html — projects
     proj_title:     'Proyectos',
-    proj_1_name:    'Proyecto Uno',
-    proj_1_desc:    'Placeholder — descripción breve del proyecto y tecnologías usadas.',
-    proj_2_name:    'Proyecto Dos',
-    proj_2_desc:    'Placeholder — descripción breve del proyecto y tecnologías usadas.',
-    proj_3_name:    'Proyecto Tres',
-    proj_3_desc:    'Placeholder — descripción breve del proyecto y tecnologías usadas.',
+    proj_1_name:    'Próximamente',
+    proj_1_desc:    'Próximamente.',
     proj_link:      'Ver →',
 
     // portfolio.html — contact
     contact_title:  'Contacto',
     contact_intro:  '¿Tienes un proyecto en mente? Hablemos.',
-    contact_email:  'hello@ismaelborroy.com',
+    contact_email:  'ismaelborroy@gmail.com',
+    contact_linkedin: 'linkedin.com/in/ismaelborroymachado',
   }
 };
 
