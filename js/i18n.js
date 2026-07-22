@@ -37,6 +37,8 @@ export const translations = {
     proj_1_desc:    'Coming soon.',
     proj_link:      'View →',
 
+    cv_download:    'Download CV',
+
     // portfolio.html — contact
     contact_title:  'Contact',
     contact_intro:  'Have a project in mind? Let\'s talk.',
@@ -80,6 +82,8 @@ export const translations = {
     proj_1_name:    'Próximamente',
     proj_1_desc:    'Próximamente.',
     proj_link:      'Ver →',
+
+    cv_download:    'Descargar CV',
 
     // portfolio.html — contact
     contact_title:  'Contacto',
