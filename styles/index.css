@@ -1,0 +1,305 @@
+/* ── Body fade-in on load ────────────────────────────────── */
+body.is-loading {
+  opacity: 0;
+}
+
+body {
+  transition: opacity 0.6s ease;
+}
+
+/* ── Navigation ─────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0;
+  transition: background var(--transition-base), box-shadow var(--transition-base);
+}
+
+.nav.scrolled {
+  background: rgba(14, 26, 20, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(232, 220, 200, 0.08);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav__logo {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-accent);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: opacity var(--transition-base);
+}
+
+.nav__logo:hover {
+  opacity: 0.7;
+}
+
+.nav__links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+}
+
+.nav__links a {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.nav__links a:hover {
+  color: var(--color-accent);
+}
+
+/* Override fixed positioning for nav lang btn */
+.nav__lang {
+  position: static;
+}
+
+/* ── Sections ────────────────────────────────────────────── */
+.section {
+  padding: 8rem 0;
+}
+
+.section--alt {
+  background: none;
+}
+
+.section__label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.75rem;
+}
+
+.section__title {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-accent);
+  line-height: 1.1;
+  margin-bottom: 3rem;
+}
+
+/* ── About ───────────────────────────────────────────────── */
+.about__body {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.about__body p {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* ── Skills ──────────────────────────────────────────────── */
+.skills__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.skill-tag {
+  padding: 0.45rem 1.1rem;
+  border: 1px solid rgba(232, 220, 200, 0.2);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+
+.skill-tag:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ── Timeline (Experience) ───────────────────────────────── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  border-left: 1px solid rgba(232, 220, 200, 0.12);
+  padding-left: 2rem;
+}
+
+.timeline__item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.5rem;
+}
+
+.timeline__period {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  padding-top: 0.2rem;
+}
+
+.timeline__role {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  margin-bottom: 0.6rem;
+}
+
+.timeline__body p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+/* ── Projects ────────────────────────────────────────────── */
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  border: 1px solid rgba(232, 220, 200, 0.1);
+  border-radius: 6px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.project-card:hover {
+  border-color: rgba(232, 220, 200, 0.3);
+  transform: translateY(-3px);
+}
+
+.project-card__num {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--color-muted);
+}
+
+.project-card__name {
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-accent);
+  line-height: 1.2;
+}
+
+.project-card__desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--color-text);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.project-card__link {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.project-card__link:hover {
+  color: var(--color-accent);
+}
+
+/* ── Contact ─────────────────────────────────────────────── */
+.contact__intro {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.contact__email {
+  display: inline-block;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-style: italic;
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 220, 200, 0.25);
+  padding-bottom: 4px;
+  transition: border-color var(--transition-base), opacity var(--transition-base);
+}
+
+.contact__email:hover {
+  border-color: var(--color-accent);
+  opacity: 0.75;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(232, 220, 200, 0.08);
+}
+
+.footer .container {
+  display: flex;
+  justify-content: center;
+}
+
+.footer span {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+
+/* ── Scroll reveal — pure fade, no movement ─────────────── */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+}
+
+/* Stagger children inside a revealed grid */
+.projects__grid .reveal:nth-child(2) { transition-delay: 0.1s; }
+.projects__grid .reveal:nth-child(3) { transition-delay: 0.2s; }
+.timeline .reveal:nth-child(2)       { transition-delay: 0.12s; }
+
+/* ── Nav scroll shadow trigger (JS adds .scrolled) ──────── */
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .nav__links {
+    display: none;
+  }
+
+  .timeline__item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .section {
+    padding: 5rem 0;
+  }
+}

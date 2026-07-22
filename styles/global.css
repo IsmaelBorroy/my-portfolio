@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+
+:root {
+  --color-bg:      #0e1a14;
+  --color-primary: #1e3a2f;
+  --color-accent:  #e8dcc8;
+  --color-text:    #d4c9b0;
+  --color-muted:   #7a8c7e;
+  --color-white:   #ffffff;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  --transition-base: 0.3s ease;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Language toggle button (shared) ─────────────────────── */
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--color-muted);
+  border-radius: 20px;
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  padding: 5px 12px 5px 8px;
+  cursor: pointer;
+  transition: border-color var(--transition-base), color var(--transition-base);
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+}
+
+.lang-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.lang-btn svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
