@@ -1,28 +1,28 @@
 // ── Translation strings ────────────────────────────────────
 export const translations = {
   en: {
-    // main.html
+    // index.html
     name:           'Ismael Borroy',
     tagline:        'Software Developer',
     hint:           'Click the door to enter',
     lang_label:     'ES',
 
-    // index.html — nav
+    // portfolio.html — nav
     nav_about:      'About',
     nav_skills:     'Skills',
     nav_experience: 'Experience',
     nav_projects:   'Projects',
     nav_contact:    'Contact',
 
-    // index.html — about
+    // portfolio.html — about
     about_title:    'About Me',
     about_p1:       'Placeholder — tell the world who you are.',
     about_p2:       'Placeholder — your background, passion, and what drives you.',
 
-    // index.html — skills
+    // portfolio.html — skills
     skills_title:   'Skills',
 
-    // index.html — experience
+    // portfolio.html — experience
     exp_title:      'Experience',
     exp_1_role:     'Role · Company',
     exp_1_period:   '2022 – Present',
@@ -31,7 +31,7 @@ export const translations = {
     exp_2_period:   '2020 – 2022',
     exp_2_desc:     'Placeholder — describe what you did and the impact you made.',
 
-    // index.html — projects
+    // portfolio.html — projects
     proj_title:     'Projects',
     proj_1_name:    'Project One',
     proj_1_desc:    'Placeholder — short description of the project and technologies used.',
@@ -41,35 +41,35 @@ export const translations = {
     proj_3_desc:    'Placeholder — short description of the project and technologies used.',
     proj_link:      'View →',
 
-    // index.html — contact
+    // portfolio.html — contact
     contact_title:  'Contact',
     contact_intro:  'Have a project in mind? Let\'s talk.',
     contact_email:  'hello@ismaelborroy.com',
   },
 
   es: {
-    // main.html
+    // index.html
     name:           'Ismael Borroy',
     tagline:        'Desarrollador de Software',
     hint:           'Haz clic en la puerta para entrar',
     lang_label:     'EN',
 
-    // index.html — nav
+    // portfolio.html — nav
     nav_about:      'Sobre mí',
     nav_skills:     'Habilidades',
     nav_experience: 'Experiencia',
     nav_projects:   'Proyectos',
     nav_contact:    'Contacto',
 
-    // index.html — about
+    // portfolio.html — about
     about_title:    'Sobre mí',
     about_p1:       'Placeholder — cuéntale al mundo quién eres.',
     about_p2:       'Placeholder — tu trayectoria, pasión y lo que te impulsa.',
 
-    // index.html — skills
+    // portfolio.html — skills
     skills_title:   'Habilidades',
 
-    // index.html — experience
+    // portfolio.html — experience
     exp_title:      'Experiencia',
     exp_1_role:     'Rol · Empresa',
     exp_1_period:   '2022 – Presente',
@@ -78,7 +78,7 @@ export const translations = {
     exp_2_period:   '2020 – 2022',
     exp_2_desc:     'Placeholder — describe lo que hiciste y el impacto que generaste.',
 
-    // index.html — projects
+    // portfolio.html — projects
     proj_title:     'Proyectos',
     proj_1_name:    'Proyecto Uno',
     proj_1_desc:    'Placeholder — descripción breve del proyecto y tecnologías usadas.',
@@ -88,7 +88,7 @@ export const translations = {
     proj_3_desc:    'Placeholder — descripción breve del proyecto y tecnologías usadas.',
     proj_link:      'Ver →',
 
-    // index.html — contact
+    // portfolio.html — contact
     contact_title:  'Contacto',
     contact_intro:  '¿Tienes un proyecto en mente? Hablemos.',
     contact_email:  'hello@ismaelborroy.com',

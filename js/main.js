@@ -77,7 +77,7 @@ const pointer   = new THREE.Vector2();
 // ── Load model ────────────────────────────────────────────
 const loader = new GLTFLoader();
 loader.load(
-  '../assets/models/Door.glb',
+  'assets/models/Door.glb',
   (gltf) => {
     const model = gltf.scene;
 
@@ -173,7 +173,7 @@ function animate() {
       // Trigger flash → navigate
       flash.classList.add('active');
       setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = 'pages/information.html';
       }, 400);
     }
     const t = easeIn(Math.min(zoomProgress, 1));
