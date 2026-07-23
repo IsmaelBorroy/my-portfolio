@@ -54,6 +54,39 @@ const rim = new THREE.DirectionalLight(0xe8dcc8, 0.4);
 rim.position.set(0, -2, -4);
 scene.add(rim);
 
+// ── Particles ─────────────────────────────────────────────
+const PARTICLE_COUNT = 120;
+const P_SPREAD_X     = 6;     // horizontal spread
+const P_SPREAD_Y     = 6;     // vertical spread (spawn range)
+const P_SPREAD_Z     = 4;     // depth spread
+const P_DRIFT        = 0.04;  // units per second upward drift
+const P_SWAY         = 0.018; // horizontal sway amplitude
+
+const pPositions = new Float32Array(PARTICLE_COUNT * 3);
+const pPhases    = new Float32Array(PARTICLE_COUNT); // per-particle sway phase
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  pPositions[i * 3]     = (Math.random() - 0.5) * P_SPREAD_X;
+  pPositions[i * 3 + 1] = (Math.random() - 0.5) * P_SPREAD_Y;
+  pPositions[i * 3 + 2] = (Math.random() - 0.5) * P_SPREAD_Z - 1;
+  pPhases[i]            = Math.random() * Math.PI * 2;
+}
+
+const pGeometry = new THREE.BufferGeometry();
+pGeometry.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+
+const pMaterial = new THREE.PointsMaterial({
+  color:       0xe8dcc8,
+  size:        0.013,
+  sizeAttenuation: true,
+  transparent: true,
+  opacity:     0.3,
+  depthWrite:  false,
+});
+
+const particles = new THREE.Points(pGeometry, pMaterial);
+scene.add(particles);
+
 // ── State ─────────────────────────────────────────────────
 const clock   = new THREE.Clock();
 let doorNode  = null;
@@ -166,6 +199,19 @@ function animate() {
     }
     doorNode.rotation.y = doorFrom + (DOOR_TO - doorFrom) * easeInOut(doorProgress);
   }
+
+  // Animate particles
+  const t = clock.elapsedTime;
+  const pos = pGeometry.attributes.position;
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    pos.array[i * 3]     += Math.sin(t + pPhases[i]) * P_SWAY * dt;
+    pos.array[i * 3 + 1] += P_DRIFT * dt;
+    // Wrap back to bottom when particle exits top
+    if (pos.array[i * 3 + 1] > P_SPREAD_Y / 2) {
+      pos.array[i * 3 + 1] = -P_SPREAD_Y / 2;
+    }
+  }
+  pos.needsUpdate = true;
 
   renderer.render(scene, camera);
 }

@@ -29,16 +29,35 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ── Intersection Observer for scroll-triggered reveals ────
+function animateCounter(el) {
+  if (el.dataset.counted) return;
+  el.dataset.counted = '1';
+  const target   = parseInt(el.textContent, 10);
+  const duration = 600;
+  const start    = performance.now();
+  function tick(now) {
+    const t       = Math.min((now - start) / duration, 1);
+    const current = Math.round(t * target);
+    el.textContent = String(current).padStart(2, '0');
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
       entry.target.classList.toggle('visible', entry.isIntersecting);
+      if (entry.isIntersecting && entry.target.classList.contains('section__label')) {
+        animateCounter(entry.target);
+      }
     });
   },
   { threshold: 0.15 }
 );
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.section__label').forEach(el => observer.observe(el));
 
 // ── Copy email to clipboard ───────────────────────────────
 const copyBtn = document.getElementById('copy-email');
