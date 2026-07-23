@@ -34,3 +34,19 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Fade-out transition on nav logo (back to index) ───────
+const flashOverlay = document.getElementById('flash-overlay');
+if (flashOverlay) {
+  const logoLink = document.querySelector('a.nav__logo');
+  if (logoLink) {
+    logoLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = logoLink.getAttribute('href');
+      flashOverlay.classList.add('active');
+      setTimeout(() => {
+        window.location.href = href;
+      }, 550);
+    });
+  }
+}
