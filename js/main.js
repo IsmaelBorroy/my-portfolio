@@ -89,6 +89,7 @@ loader.load(
 
     model.scale.setScalar(scale);
     model.position.sub(center.multiplyScalar(scale));
+    model.position.y -= 0.25;
 
     model.traverse((node) => {
       if (node.isMesh) {
