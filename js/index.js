@@ -17,10 +17,15 @@ window.addEventListener('load', () => {
   });
 });
 
-// ── Nav scroll shadow ─────────────────────────────────────
-const nav = document.getElementById('nav');
+// ── Nav scroll shadow + scroll progress ──────────────────
+const nav            = document.getElementById('nav');
+const scrollProgress = document.getElementById('scroll-progress');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
+  if (scrollProgress) {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    scrollProgress.style.width = `${Math.min(pct, 100)}%`;
+  }
 }, { passive: true });
 
 // ── Intersection Observer for scroll-triggered reveals ────

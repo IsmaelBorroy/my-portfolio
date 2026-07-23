@@ -7,6 +7,19 @@ body {
   transition: opacity 0.6s ease;
 }
 
+/* ── Scroll progress bar ─────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--color-accent);
+  z-index: 200;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
 /* ── Navigation ─────────────────────────────────────────── */
 .nav {
   position: fixed;
