@@ -88,7 +88,7 @@ if (flashOverlay) {
 
 // ── HUD font-size toggle ──────────────────────────────────
 const HUD_KEY    = 'hud-level';
-const HUD_LEVELS = 3;
+const HUD_LEVELS = 2;
 
 function applyHud(level) {
   document.documentElement.setAttribute('data-hud', level);
