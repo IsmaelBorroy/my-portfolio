@@ -195,8 +195,8 @@ body {
 
 /* ── HUD font-size scaling ───────────────────────────────── */
 [data-hud="1"] { --hud-scale: 1;    }
-[data-hud="2"] { --hud-scale: 1.1;  }
-[data-hud="3"] { --hud-scale: 1.25; }
+[data-hud="2"] { --hud-scale: 1.5;  }
+[data-hud="3"] { --hud-scale: 2; }
 
 body {
   font-size: calc(1rem * var(--hud-scale));
