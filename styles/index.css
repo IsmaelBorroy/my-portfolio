@@ -314,6 +314,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  background: var(--color-surface);
   transition: border-color var(--transition-base), transform var(--transition-base);
 }
 
