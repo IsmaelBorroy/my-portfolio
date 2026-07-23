@@ -37,6 +37,7 @@ export const translations = {
     proj_1_desc:    'Full-stack RAG system built as an IBM entry project. Ingests a PDF, handles document chunking and retrieval logic, and exposes a conversational interface powered by an LLM with custom prompting. Containerised with Docker.',
     proj_link:      'View →',
 
+    status_chip:    'Available for work',
     cv_download:    'Download CV',
 
     // portfolio.html — contact
@@ -83,6 +84,7 @@ export const translations = {
     proj_1_desc:    'Sistema RAG full-stack construido como proyecto de ingreso a IBM. Procesa un PDF, implementa lógica de chunking y recuperación de información, y expone una interfaz conversacional con un LLM y prompting personalizado. Contenerizado con Docker.',
     proj_link:      'Ver →',
 
+    status_chip:    'Disponible para trabajar',
     cv_download:    'Descargar CV',
 
     // portfolio.html — contact

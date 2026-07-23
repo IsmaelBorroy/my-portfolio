@@ -54,6 +54,13 @@ const rim = new THREE.DirectionalLight(0xe8dcc8, 0.4);
 rim.position.set(0, -2, -4);
 scene.add(rim);
 
+// ── Door light leak ───────────────────────────────────────
+// Warm light positioned just behind the door plane.
+// Intensity is driven by doorProgress in the animate loop.
+const leakLight = new THREE.PointLight(0xffe0a0, 0, 4);
+leakLight.position.set(0, 0, -0.6);
+scene.add(leakLight);
+
 // ── Particles ─────────────────────────────────────────────
 const PARTICLE_COUNT = 120;
 const P_SPREAD_X     = 6;     // horizontal spread
@@ -144,6 +151,27 @@ function easeInOut(t) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
+// ── Konami code easter egg ────────────────────────────────
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight'];
+const keyLog = [];
+
+window.addEventListener('keydown', (e) => {
+  keyLog.push(e.key);
+  if (keyLog.length > KONAMI.length) keyLog.shift();
+  if (keyLog.join(',') === KONAMI.join(',') && doorNode && !triggered) {
+    triggered     = true;
+    doorAnimating = true;
+    doorProgress  = 0;
+    doorFrom      = doorNode.rotation.y;
+
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) heroBg.classList.add('fade-out');
+
+    const hint = document.getElementById('enter-hint');
+    if (hint) hint.style.opacity = '0';
+  }
+});
+
 // ── Click handler ─────────────────────────────────────────
 renderer.domElement.addEventListener('click', (e) => {
   if (!doorNode || triggered) return;
@@ -199,6 +227,9 @@ function animate() {
     }
     doorNode.rotation.y = doorFrom + (DOOR_TO - doorFrom) * easeInOut(doorProgress);
   }
+
+  // Drive light leak from doorProgress
+  leakLight.intensity = easeInOut(doorProgress) * 3;
 
   // Animate particles
   const t = clock.elapsedTime;
