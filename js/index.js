@@ -35,6 +35,17 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ── Copy email to clipboard ───────────────────────────────
+const copyBtn = document.getElementById('copy-email');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText('ismaelborroy@gmail.com').then(() => {
+      copyBtn.classList.add('copied');
+      setTimeout(() => copyBtn.classList.remove('copied'), 1500);
+    });
+  });
+}
+
 // ── Fade-out transition on nav logo (back to index) ───────
 const flashOverlay = document.getElementById('flash-overlay');
 if (flashOverlay) {

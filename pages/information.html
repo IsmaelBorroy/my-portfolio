@@ -277,13 +277,26 @@
         <span class="section__label">05</span>
         <h2 class="section__title" data-i18n="contact_title">Contact</h2>
         <p class="contact__intro" data-i18n="contact_intro">Have a project in mind? Let's talk.</p>
-        <a class="contact__link" href="mailto:ismaelborroy@gmail.com">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="M2 7l10 7 10-7"/>
-          </svg>
-          <span data-i18n="contact_email">ismaelborroy@gmail.com</span>
-        </a>
+        <div class="contact__row">
+          <a class="contact__link" href="mailto:ismaelborroy@gmail.com">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M2 7l10 7 10-7"/>
+            </svg>
+            <span data-i18n="contact_email">ismaelborroy@gmail.com</span>
+          </a>
+          <button class="copy-btn" id="copy-email" aria-label="Copy email address">
+            <!-- Clipboard icon -->
+            <svg class="copy-btn__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <!-- Checkmark icon (shown on copy) -->
+            <svg class="copy-btn__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </button>
+        </div>
         <a class="contact__link" href="https://www.linkedin.com/in/ismaelborroymachado" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="4"/>

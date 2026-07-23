@@ -361,6 +361,50 @@ body {
   opacity: 0.85;
 }
 
+/* ── Copy email button ───────────────────────────────────── */
+.contact__row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.contact__row .contact__link {
+  margin-bottom: 0;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--color-border-hover);
+  border-radius: 6px;
+  color: var(--color-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+
+.copy-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.copy-btn__check {
+  display: none;
+}
+
+.copy-btn.copied {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.copy-btn.copied .copy-btn__icon  { display: none; }
+.copy-btn.copied .copy-btn__check { display: block; }
+
 /* ── Footer ──────────────────────────────────────────────── */
 .footer {
   padding: 2.5rem 0;
