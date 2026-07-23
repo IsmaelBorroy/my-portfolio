@@ -85,3 +85,26 @@ if (flashOverlay) {
     });
   }
 }
+
+// ── HUD font-size toggle ──────────────────────────────────
+const HUD_KEY    = 'hud-level';
+const HUD_LEVELS = 3;
+
+function applyHud(level) {
+  document.documentElement.setAttribute('data-hud', level);
+}
+
+(function initHud() {
+  const saved = parseInt(localStorage.getItem(HUD_KEY), 10) || 1;
+  applyHud(saved);
+})();
+
+const fontSizeBtn = document.getElementById('font-size-toggle');
+if (fontSizeBtn) {
+  fontSizeBtn.addEventListener('click', () => {
+    const current = parseInt(document.documentElement.getAttribute('data-hud') || '1', 10);
+    const next    = (current % HUD_LEVELS) + 1;
+    applyHud(next);
+    localStorage.setItem(HUD_KEY, next);
+  });
+}

@@ -16,6 +16,9 @@
   --font-serif: 'Cormorant Garamond', Georgia, serif;
 
   --transition-base: 0.3s ease;
+
+  /* HUD / font-size scale: 1 = default, 1.1 = medium, 1.25 = large */
+  --hud-scale: 1;
 }
 
 /* ── Light theme ─────────────────────────────────────────── */
@@ -188,6 +191,41 @@ body {
 .flash-overlay.active {
   opacity: 1;
   pointer-events: all;
+}
+
+/* ── HUD font-size scaling ───────────────────────────────── */
+[data-hud="1"] { --hud-scale: 1;    }
+[data-hud="2"] { --hud-scale: 1.1;  }
+[data-hud="3"] { --hud-scale: 1.25; }
+
+body {
+  font-size: calc(1rem * var(--hud-scale));
+}
+
+/* ── Font-size toggle button ─────────────────────────────── */
+.font-size-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: 1px solid var(--color-muted);
+  border-radius: 50%;
+  color: var(--color-accent);
+  cursor: pointer;
+  transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
+  position: static;
+}
+
+.font-size-btn:hover {
+  border-color: var(--color-accent);
+}
+
+/* Active (non-default) state: filled indicator */
+[data-hud="2"] .font-size-btn,
+[data-hud="3"] .font-size-btn {
+  border-color: var(--color-accent);
 }
 
 /* ── Mouse trail canvas (shared across pages) ────────────── */
