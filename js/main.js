@@ -95,14 +95,18 @@ const particles = new THREE.Points(pGeometry, pMaterial);
 scene.add(particles);
 
 // ── State ─────────────────────────────────────────────────
-const clock   = new THREE.Clock();
-let doorNode  = null;
+const clock    = new THREE.Clock();
+let doorNode   = null;
 let doorMeshes = [];
-let triggered = false;   // prevent double-click
+let triggered  = false;   // prevent double-click
 
-// Door open tween
+// GLB animation mixer (used when clip is present in the GLB)
+let mixer      = null;
+let doorAction = null;
+
+// Manual tween fallback (used when GLB has no animation clip)
 let doorAnimating  = false;
-let doorProgress   = 1;
+let doorProgress   = 0;
 let doorFrom       = 0;
 const DOOR_TO      = -Math.PI / 2;
 const DOOR_DURATION = 0.65;
@@ -137,8 +141,30 @@ loader.load(
         node.receiveShadow = true;
         doorMeshes.push(node);
       }
-      if (node.name === 'Door') doorNode = node;
+      // GLB exports node as lowercase "door"
+      if (node.name.toLowerCase() === 'door') doorNode = node;
     });
+
+    // Set up AnimationMixer and find door open clip
+    if (gltf.animations && gltf.animations.length > 0) {
+      console.log('[Door] clips in GLB:', gltf.animations.map(a => `"${a.name}" (${a.duration.toFixed(2)}s)`));
+      mixer = new THREE.AnimationMixer(model);
+      // Try common clip name variants (case-insensitive fallback)
+      const CLIP_CANDIDATES = ['door_open', 'open_door', 'door', 'Door', 'DoorOpen', 'OpenDoor'];
+      const clip = CLIP_CANDIDATES.reduce((found, name) =>
+        found || THREE.AnimationClip.findByName(gltf.animations, name), null)
+        || gltf.animations[0]; // last resort: first clip
+      if (clip) {
+        console.log('[Door] clip found:', clip.name, '— duration:', clip.duration.toFixed(2) + 's');
+        doorAction = mixer.clipAction(clip);
+        doorAction.setLoop(THREE.LoopOnce, 1);
+        doorAction.clampWhenFinished = true;
+      } else {
+        console.warn('[Door] No animation clip found. Available:', gltf.animations.map(a => a.name));
+      }
+    } else {
+      console.warn('[Door] GLB has no animations at all');
+    }
 
     scene.add(model);
   },
@@ -151,6 +177,39 @@ function easeInOut(t) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
+// ── Helper: trigger door open ─────────────────────────────
+function openDoor() {
+  triggered = true;
+  console.log('[Door] openDoor() called. doorAction:', !!doorAction, '| doorNode:', !!doorNode);
+
+  if (doorAction) {
+    // Play the GLB clip
+    doorAction.reset();
+    doorAction.play();
+    console.log('[Door] GLB animation started');
+    mixer.addEventListener('finished', onDoorFinished);
+  } else {
+    // No clip in GLB → fall back to manual tween
+    console.log('[Door] No clip — using manual tween fallback');
+    doorAnimating = true;
+    doorProgress  = 0;
+    doorFrom      = doorNode ? doorNode.rotation.y : 0;
+  }
+
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) heroBg.classList.add('fade-out');
+
+  const hint = document.getElementById('enter-hint');
+  if (hint) hint.style.opacity = '0';
+}
+
+function onDoorFinished() {
+  flash.classList.add('active');
+  setTimeout(() => {
+    window.location.href = 'pages/information.html';
+  }, 400);
+}
+
 // ── Konami code easter egg ────────────────────────────────
 const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight'];
 const keyLog = [];
@@ -159,16 +218,7 @@ window.addEventListener('keydown', (e) => {
   keyLog.push(e.key);
   if (keyLog.length > KONAMI.length) keyLog.shift();
   if (keyLog.join(',') === KONAMI.join(',') && doorNode && !triggered) {
-    triggered     = true;
-    doorAnimating = true;
-    doorProgress  = 0;
-    doorFrom      = doorNode.rotation.y;
-
-    const heroBg = document.querySelector('.hero-bg');
-    if (heroBg) heroBg.classList.add('fade-out');
-
-    const hint = document.getElementById('enter-hint');
-    if (hint) hint.style.opacity = '0';
+    openDoor();
   }
 });
 
@@ -184,18 +234,7 @@ renderer.domElement.addEventListener('click', (e) => {
   const hits = raycaster.intersectObjects(doorMeshes, true);
 
   if (hits.length > 0) {
-    triggered      = true;
-    doorAnimating  = true;
-    doorProgress   = 0;
-    doorFrom       = doorNode.rotation.y;
-
-    // Fade out hero title upward
-    const heroBg = document.querySelector('.hero-bg');
-    if (heroBg) heroBg.classList.add('fade-out');
-
-    // Hide hint
-    const hint = document.getElementById('enter-hint');
-    if (hint) hint.style.opacity = '0';
+    openDoor();
   }
 });
 
@@ -213,23 +252,29 @@ function animate() {
   requestAnimationFrame(animate);
   const dt = clock.getDelta();
 
-  // Door open tween
+  // Tick GLB animation mixer
+  if (mixer) mixer.update(dt);
+
+  // Manual tween fallback (when GLB has no animation clip)
   if (doorAnimating && doorNode) {
     doorProgress += dt / DOOR_DURATION;
     if (doorProgress >= 1) {
       doorProgress  = 1;
       doorAnimating = false;
-      // Door fully open → flash and navigate
-      flash.classList.add('active');
-      setTimeout(() => {
-        window.location.href = 'pages/information.html';
-      }, 400);
+      onDoorFinished();
     }
     doorNode.rotation.y = doorFrom + (DOOR_TO - doorFrom) * easeInOut(doorProgress);
   }
 
-  // Drive light leak from doorProgress
-  leakLight.intensity = easeInOut(doorProgress) * 3;
+  // Drive light leak
+  if (doorAction && doorAction.isRunning()) {
+    const progress = doorAction.time / doorAction.getClip().duration;
+    leakLight.intensity = easeInOut(Math.min(progress, 1)) * 3;
+  } else if (doorAnimating) {
+    leakLight.intensity = easeInOut(doorProgress) * 3;
+  } else if (triggered) {
+    leakLight.intensity = 3;
+  }
 
   // Animate particles
   const t = clock.elapsedTime;
